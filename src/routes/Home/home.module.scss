@@ -1,0 +1,14 @@
+@use 'styles/constants/colors';
+
+.home {
+  padding: 20px;
+
+  .articles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    // TODO: calculate height
+    max-height: 80vh;
+    overflow: scroll;
+  }
+}
