@@ -1,0 +1,50 @@
+@use 'styles/constants/colors';
+
+.article {
+  padding: 10px 20px;
+  background: colors.$WHITE;
+  border-radius: 8px;
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  .top {
+    display: flex;
+    gap: 15px;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .heading {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+    }
+
+    .scrap {
+      padding: 0 4px;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.05em;
+
+    .source {
+      display: flex;
+      gap: 8px;
+    }
+
+    .date {
+      color: colors.$BLACK80;
+    }
+  }
+}
