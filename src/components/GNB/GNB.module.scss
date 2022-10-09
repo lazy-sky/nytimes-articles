@@ -1,0 +1,50 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+
+.gnb {
+  position: absolute;
+  bottom: 0;
+  z-index: levels.$GNB;
+  width: 100%;
+  background-color: colors.$BLACK;
+  border-radius: 30px;
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    li {
+      height: 100%;
+
+      > a {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 20px 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: colors.$BLACK80;
+
+        svg {
+          fill: colors.$BLACK80;
+        }
+
+        &.isActive {
+          color: colors.$WHITE;
+
+          svg {
+            fill: colors.$WHITE;
+          }
+        }
+      }
+    }
+  }
+}
