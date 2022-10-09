@@ -11,7 +11,7 @@ interface IArticleProps {
 }
 
 const Article = ({ article }: IArticleProps) => {
-  const { abstract, pub_date, web_url, source, byline } = article
+  const { headline, pub_date, web_url, source, byline } = article
   const [isScrapped, setIsScrapped] = useState(false)
 
   const handleScrapToggle: React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -23,7 +23,7 @@ const Article = ({ article }: IArticleProps) => {
     <div className={style.article}>
       <a href={web_url}>
         <div className={style.top}>
-          <h4 className={style.heading}>{abstract}</h4>
+          <h4 className={style.heading}>{headline.main}</h4>
           <button type='button' onClick={handleScrapToggle} className={style.scrap}>
             {isScrapped ? <StarFilledIcon /> : <StarIcon />}
           </button>
