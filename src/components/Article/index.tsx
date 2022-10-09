@@ -1,22 +1,30 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
-import { useState } from 'react'
-
 import { StarIcon, StarFilledIcon } from 'assets/svg'
 import { formatDate } from 'utils'
 
 import style from './article.module.scss'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { scrappedArticlesState } from 'store/atom'
+import { scrappedArticlesIdsState } from 'store/selector'
 
 interface IArticleProps {
   article: IArticle
 }
 
 const Article = ({ article }: IArticleProps) => {
-  const { headline, pub_date, web_url, source, byline } = article
-  const [isScrapped, setIsScrapped] = useState(false)
+  const [scrappeds, setScrappeds] = useRecoilState(scrappedArticlesState)
+  const scrappedsIds = useRecoilValue(scrappedArticlesIdsState)
+  const { _id, headline, pub_date, web_url, source, byline } = article
 
   const handleScrapToggle: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
-    setIsScrapped((prev) => !prev)
+
+    if (scrappedsIds.includes(_id)) {
+      setScrappeds(scrappeds.filter((scrapped) => article._id !== scrapped._id))
+      return
+    }
+    setScrappeds((prev) => [article, ...prev])
   }
 
   return (
@@ -25,7 +33,7 @@ const Article = ({ article }: IArticleProps) => {
         <div className={style.top}>
           <h4 className={style.heading}>{headline.main}</h4>
           <button type='button' onClick={handleScrapToggle} className={style.scrap}>
-            {isScrapped ? <StarFilledIcon /> : <StarIcon />}
+            {scrappedsIds.includes(_id) ? <StarFilledIcon /> : <StarIcon />}
           </button>
         </div>
         <div className={style.bottom}>
