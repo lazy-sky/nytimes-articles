@@ -1,0 +1,11 @@
+@use 'styles/constants/colors';
+
+.app {
+  position: relative;
+  width: 50%;
+  max-width: 576px;
+  height: 100vh;
+  margin: 0 auto;
+  background: colors.$WHITE;
+  border-radius: 30px;
+}
