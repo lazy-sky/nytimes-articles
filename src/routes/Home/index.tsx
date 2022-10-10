@@ -1,18 +1,25 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
 import { useInView } from 'react-intersection-observer'
 
+import { dateQueryState, headlineQueryState, nationsQueryState } from 'store/atom'
+import SearchFilters from 'components/SearchFilters'
 import { getArticles } from 'services/article'
 import Article from 'components/Article'
 
 import style from './home.module.scss'
+import Loading from 'components/Loading'
+import Error from 'components/Error'
 
 const Home = () => {
+  const headlineQuery = useRecoilValue(headlineQueryState)
+  const dateQuery = useRecoilValue(dateQueryState)
+  const nationsQuery = useRecoilValue(nationsQueryState)
   const { status, data, fetchNextPage } = useInfiniteQuery(
-    // ['articles', query],
-    ['articles'],
-    ({ pageParam }) => getArticles(pageParam),
+    ['articles', { headlineQuery, dateQuery, nationsQuery }],
+    ({ pageParam }) => getArticles(pageParam, headlineQuery, dateQuery, nationsQuery),
     {
       getNextPageParam: (lastPage) => lastPage.nextPage,
     }
@@ -26,11 +33,12 @@ const Home = () => {
     if (inView) fetchNextPage()
   }, [fetchNextPage, inView])
 
-  if (status === 'loading') return <div>loading</div>
-  if (status === 'error') return <div>error</div>
+  if (status === 'error') return <Error />
+  if (status === 'loading') return <Loading />
 
   return (
     <div className={style.home}>
+      <SearchFilters />
       <ul className={style.articles}>
         {data.pages.map((page, index) => {
           const pageKey = `page-${index}`

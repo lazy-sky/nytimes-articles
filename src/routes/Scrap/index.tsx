@@ -2,6 +2,7 @@
 import { useRecoilValue } from 'recoil'
 
 import { scrappedArticlesState } from 'store/atom'
+import SearchFilters from 'components/SearchFilters'
 import Article from 'components/Article'
 
 import style from './scrap.module.scss'
@@ -11,7 +12,8 @@ const Scrap = () => {
 
   return (
     <div className={style.scrap}>
-      <ul>
+      <SearchFilters />
+      <ul className={style.articles}>
         {scrappeds.map((article: IArticle) => (
           <li key={article._id}>
             <Article article={article} />

@@ -1,0 +1,45 @@
+@use 'styles/constants/colors';
+
+.searchFilters {
+  width: 100%;
+  padding-top: 44px;
+  background: colors.$WHITE;
+  border-radius: 30px;
+
+  .items {
+    display: flex;
+    gap: 8px;
+    padding: 13px 20px;
+    background: colors.$WHITE;
+
+    .item {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 12px 4px;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      border: 1px solid colors.$GRAY;
+      border-radius: 30px;
+
+      .text {
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &.active {
+        color: colors.$BLUE;
+        border: 1px solid colors.$BLUE;
+
+        svg {
+          stroke: colors.$BLUE;
+        }
+      }
+    }
+  }
+}
