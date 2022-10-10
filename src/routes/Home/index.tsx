@@ -8,10 +8,11 @@ import { dateQueryState, headlineQueryState, nationsQueryState } from 'store/ato
 import SearchFilters from 'components/SearchFilters'
 import { getArticles } from 'services/article'
 import Article from 'components/Article'
+import NoArticles from 'components/NoArticles'
+import Error from 'components/Error'
+import Loading from 'components/Loading'
 
 import style from './home.module.scss'
-import Loading from 'components/Loading'
-import Error from 'components/Error'
 
 const Home = () => {
   const headlineQuery = useRecoilValue(headlineQueryState)
@@ -40,19 +41,23 @@ const Home = () => {
     <div className={style.home}>
       <SearchFilters />
       <ul className={style.articles}>
-        {data.pages.map((page, index) => {
-          const pageKey = `page-${index}`
+        {data.pages[0].docs.length ? (
+          data.pages.map((page, index) => {
+            const pageKey = `page-${index}`
 
-          return (
-            <React.Fragment key={pageKey}>
-              {page.docs.map((article: IArticle) => (
-                <li key={article._id} ref={ref}>
-                  <Article article={article} />
-                </li>
-              ))}
-            </React.Fragment>
-          )
-        })}
+            return (
+              <React.Fragment key={pageKey}>
+                {page.docs.map((article: IArticle) => (
+                  <li key={article._id} ref={ref}>
+                    <Article article={article} />
+                  </li>
+                ))}
+              </React.Fragment>
+            )
+          })
+        ) : (
+          <NoArticles text='검색 결과에 맞는 기사가 없습니다.' />
+        )}
       </ul>
     </div>
   )
