@@ -1,12 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
-import { StarIcon, StarFilledIcon } from 'assets/svg'
-import { formatDate } from 'utils'
-
-import style from './article.module.scss'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 import { scrappedArticlesState } from 'store/atom'
 import { scrappedArticlesIdsState } from 'store/selector'
+import { formatDate } from 'utils'
+import { StarIcon, StarFilledIcon } from 'assets/svg'
+
+import style from './article.module.scss'
 
 interface IArticleProps {
   article: IArticle
@@ -20,10 +23,15 @@ const Article = ({ article }: IArticleProps) => {
   const handleScrapToggle: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
+    const MySwal = withReactContent(Swal)
+
     if (scrappedsIds.includes(_id)) {
       setScrappeds(scrappeds.filter((scrapped) => article._id !== scrapped._id))
+      MySwal.fire('스크랩이 해제되었습니다.')
       return
     }
+
+    MySwal.fire('스크랩되었습니다.')
     setScrappeds((prev) => [article, ...prev])
   }
 
