@@ -1,0 +1,94 @@
+@use 'styles/constants/colors';
+
+.filterModal {
+  position: absolute;
+  top: 0;
+  z-index: 9999999;
+  width: 100%;
+  min-height: 100%;
+  padding: 10%;
+  background: rgba(0, 0, 0, 70%);
+
+  .wrapper {
+    max-width: 50%;
+    padding: 20px;
+    margin: 0 auto 16px;
+    background: colors.$WHITE;
+    border-radius: 16px;
+  }
+
+  .field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+
+    label {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+      color: colors.$BLACK;
+      letter-spacing: -0.05em;
+    }
+
+    .queryInput {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      letter-spacing: -0.04em;
+      border: 1px solid colors.$GRAY;
+      border-radius: 8px;
+
+      svg {
+        stroke: colors.$GRAY;
+      }
+
+      input {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+
+        &::placeholder {
+          color: colors.$GRAY;
+        }
+      }
+    }
+
+    .datePicker {
+      position: absolute;
+      width: 80%;
+    }
+  }
+
+  .nations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    button {
+      padding: 6px 12px 4px;
+      border: 1px solid colors.$WHITE60;
+      border-radius: 30px;
+    }
+
+    .active {
+      color: colors.$WHITE;
+      background: colors.$BLUESKY;
+    }
+  }
+
+  .submitBtn {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: colors.$WHITE;
+    letter-spacing: -0.05em;
+    background: colors.$BLUE;
+    border-radius: 16px;
+  }
+}
