@@ -46,5 +46,12 @@
     .date {
       color: colors.$BLACK80;
     }
+
+    .sourceItem {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }

@@ -38,8 +38,8 @@ const Article = ({ article }: IArticleProps) => {
         </div>
         <div className={style.bottom}>
           <div className={style.source}>
-            <div>{source}</div>
-            <div>{byline.original}</div>
+            <div className={style.sourceItem}>{source}</div>
+            <div className={style.sourceItem}>{byline.original}</div>
           </div>
           <div className={style.date}>{formatDate(pub_date)}</div>
         </div>
