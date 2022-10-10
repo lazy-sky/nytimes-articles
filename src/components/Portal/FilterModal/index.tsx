@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import cx from 'classnames'
+import { useRecoilState } from 'recoil'
 import ReactDatePicker from 'react-datepicker'
+import cx from 'classnames'
 
 import { dateQueryState, headlineQueryState, nationsQueryState } from 'store/atom'
 import { formatDate } from 'utils'
@@ -18,29 +18,20 @@ interface IModalProps {
 const FilterModal = ({ onClick }: IModalProps) => {
   const [headlineQuery, setHeadlineQuery] = useRecoilState(headlineQueryState)
   const [dateQuery, setDateQuery] = useRecoilState(dateQueryState)
-  const setNationsQuery = useSetRecoilState(nationsQueryState)
+  const [nationsQuery, setNationsQuery] = useRecoilState(nationsQueryState)
   const [inputs, setInputs] = useState({
     headline: headlineQuery,
     date: dateQuery,
   })
   const { headline, date } = inputs
-  const nations = [
-    { ko: '대한민국', en: 'South Korea' },
-    { ko: '중국', en: 'China' },
-    { ko: '일본', en: 'Japan' },
-    { ko: '미국', en: 'United States' },
-    { ko: '북한', en: 'North Korea' },
-    { ko: '러시아', en: 'Russia' },
-    { ko: '프랑스', en: 'France' },
-    { ko: '영국', en: 'England' },
-  ]
-  const [selectedNations, setSelectedNations] = useState<string[]>([])
+  const nations = ['South Korea', 'China', 'Japan', 'United States', 'North Korea', 'Russia', 'France', 'England']
+  const [selectedNations, setSelectedNations] = useState<string[]>(nationsQuery)
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { value, name } = e.target // 우선 e.target 에서 name 과 value 를 추출
+    const { value, name } = e.target
     setInputs({
-      ...inputs, // 기존의 input 객체를 복사한 뒤
-      [name]: value, // name 키를 가진 값을 value 로 설정
+      ...inputs,
+      [name]: value,
     })
   }
 
@@ -102,19 +93,19 @@ const FilterModal = ({ onClick }: IModalProps) => {
             <label htmlFor='nations'>국가</label>
             <ul id='nations' className={style.nations}>
               {nations.map((nation) => (
-                <li key={nation.ko}>
+                <li key={nation}>
                   <button
                     type='button'
-                    onClick={() => handleNationClick(nation.en)}
-                    className={cx(selectedNations.includes(nation.en) && style.active)}
+                    onClick={() => handleNationClick(nation)}
+                    className={cx(selectedNations.includes(nation) && style.active)}
                   >
-                    {nation.ko}
+                    {nation}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
-          <button type='button' onClick={handleApplyClick} className={style.submitBtn}>
+          <button type='button' onClick={handleApplyClick} className={style.applyBtn}>
             필터 적용하기
           </button>
         </div>
