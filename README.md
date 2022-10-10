@@ -81,19 +81,18 @@ npm start # .env 파일의 REACT_APP_API_KEY 필요
     - [x] api로 받아오는 데이터 외의 문구들은 모두 피그마에 적힌 것을 기준으로 한다. 
     - [ ] 상단의 필터 부분은 “홈"화면과 “스크랩"화면이 서로 별개입니다. 예를들어, 홈화면의 필터의 값을 변경한 뒤 스크랩 화면으로 가더라도, 스크랩 화면의 필터가 변경되선 안됩니다.
 
-### Home
 
-#### 로딩 및 스크롤
+### 로딩 및 스크롤
 
-#### 필터
+![home](https://user-images.githubusercontent.com/47808461/194892545-3944c1a2-eb2a-4c05-8477-1b03ce61d002.gif)
 
-#### 스크랩
+### 필터
 
-### Scrap
+![filter](https://user-images.githubusercontent.com/47808461/194892571-c9cc5881-2f4c-4a30-911c-6e83f5fa05fd.gif)
 
-#### 스크랩 항목 없음
+### 스크랩
 
-#### 스크랩 해제
+![scrap](https://user-images.githubusercontent.com/47808461/194892557-052e9913-faad-4849-be2e-5d73b970ae12.gif)
 
 ## Review
 
