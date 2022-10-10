@@ -1,0 +1,17 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+
+.error {
+  z-index: levels.$ERROR;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .message {
+    position: fixed;
+    top: 40vh;
+    width: 64px;
+    height: 64px;
+    font-size: 36px;
+  }
+}
